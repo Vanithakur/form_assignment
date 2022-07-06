@@ -1,0 +1,86 @@
+
+<div class="container">
+    <h2>Step - 3</h2>
+    <div class="row">
+      <form (ngSubmit)="onSubmit()" #f = "ngForm">
+        <div class="row mb-3">
+            <label for="inputEmail" class="col-sm-2 col-form-label">Qualification</label>
+        <div class="col-sm-6">
+          <select class="form-select" aria-label="Default select example" name="qualification" 
+          required
+          ngModel> 
+            <option *ngFor="let qual of qualification" [value]="qual">{{ qual }}</option>
+          
+          </select>
+    </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputEmail" class="col-sm-2 col-form-label">Profession</label>
+    <div class="col-sm-6">
+      <select 
+      class="form-select"
+       aria-label="Default select example"
+       name="profession" 
+      required
+      ngModel>
+        <option *ngFor="let pro of profession" [value]="pro">I am a {{pro}}.</option>
+      </select>
+     </div>
+    </div>
+    <div class="row mb-3">
+        <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Short Description</label>
+        <div class="col-sm-6">
+            <textarea 
+            class="form-control"
+             id="description" 
+             rows="3" 
+             name="description" 
+            required
+            ngModel></textarea>
+        </div>  
+      </div>
+      <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label"><b>Contact Person 1</b> </label>
+      <div class="row mb-3">
+        <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-6">
+          <input  class="form-control" type="text" name="name">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Phone</label>
+          <div class="col-sm-6">
+            <input  class="form-control" type="tel" name="phone">
+            </div>
+        </div>
+        <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label"><b>Contact Person 2</b> </label>
+      <div class="row mb-3">
+        <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-6">
+          <input  class="form-control" type="text" name="name">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Phone</label>
+          <div class="col-sm-6">
+            <input  class="form-control" type="tel" name="phone">
+            </div>
+        </div>
+       
+          <div class="row">
+        <div class="col-sm-6 offset-sm-2">
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+        </div>
+    </div>
+    </form>
+    </div>
+    <a routerLink="/step2"><button type="button" class="btn btn-primary prev">Prev</button></a>
+</div>
+<div class="row" *ngIf="submitted">
+  <div class="col-xs-12">
+    <h3>Your Data</h3>
+    <p>Email: {{ user.qualification }}</p>
+    <p>Secret Question:{{ user.profession }}</p>
+    <p>Answer: {{ user.description }}</p>
+
+  </div>
+</div>

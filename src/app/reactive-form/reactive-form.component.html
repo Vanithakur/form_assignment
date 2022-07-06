@@ -1,0 +1,300 @@
+<mat-horizontal-stepper  #stepper>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <mat-step label="Step 1">
+    <!-- <form [formGroup]="signupForm" (ngSubmit)="onSubmit()"> -->
+    <div class="row mb-3">
+        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="email" 
+            class="form-control email" 
+            formControlName="email"
+            id="email" 
+            placeholder="Email"
+           required>
+           <span 
+           *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched"
+           class="help-block">Please enter a valid email!</span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-6">
+            <input type="password"
+             class="form-control password" 
+             id="Password" 
+             placeholder="Password"
+             formControlName="password"
+            required>
+            <span 
+            *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched"
+            class="help-block">Please enter a valid password!</span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Gender</label>
+        <div class="col-sm-6">
+            <div class="radio" *ngFor="let gender of genders">
+                <label for="radio">
+                  <input 
+                  type="radio"
+                  [value]="gender"
+                  formControlName="gender"
+                  required>
+                  {{ gender }}
+                </label>
+              </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="birthday" class="col-sm-2 col-form-label">Birthday:</label>
+        <div class="col-sm-6">
+        <input type="date" 
+        id="birthday" 
+        class="form-control"
+        required
+        formControlName="birthday">
+        <span 
+        *ngIf="!signupForm.get('birthday').valid && signupForm.get('birthday').touched"
+        class="help-block">Please enter a valid date of birth!</span>
+    </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-sm-6 offset-sm-2">
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+  </div>
+  </form> -->
+  </mat-step>
+  <mat-step label="Step 2">
+    <div class="row mb-3">
+        <label for="formFile" class="col-sm-2 col-form-label">Choose your Image</label>
+        <div class="col-sm-6">
+        <input 
+        class="form-control"
+         type="file"
+         formControlName="image"
+          required
+          />
+          <span 
+            *ngIf="!signupForm.get('image').valid && signupForm.get('image').touched"
+            class="help-block">Please enter a image picture!</span>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="formFile" class="col-sm-2 col-form-label">Select Hobbies</label>
+            <div class="col-sm-6">
+                <div class="checkbox" *ngFor="let hobby of hobbies">
+                    <label for="checkbox">
+                      <input 
+                      type="checkbox"
+                      [value]="hobby"
+                      required
+                      formControlName="hobbies">
+                      {{ hobby }}
+                    </label>
+                  
+                  </div>
+                  <span 
+                  *ngIf="!signupForm.get('hobbies').valid && signupForm.get('hobbies').touched"
+                  class="help-block">Please select the hobbies</span>
+            </div>
+        </div>
+      <div class="row mb-3">
+        <label for="phone" class="col-sm-2 col-form-label"> Phone number:</label>
+        <div class="col-sm-6">
+            <select class="browser-default custom-select" required >
+                <option *ngFor="let c of code " [value]="c">{{ c }}</option>
+            </select> 
+
+            <input 
+            type="tel" 
+            id="phone" 
+            name="phone"
+            placeholder="445-455-6758" 
+            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"           
+            required
+            formControlName="phone">
+            <span 
+            *ngIf="!signupForm.get('phone').valid && signupForm.get('phone').touched"
+            class="help-block">Please enter a valid phone!</span>
+        </div>
+        </div>
+  </mat-step>
+   
+  <mat-step label="Step 3">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+        <label for="inputEmail" class="col-sm-2 col-form-label">Qualification</label>
+    <div class="col-sm-6">
+      <select class="form-select" aria-label="Default select example" 
+      required  formControlName="qualification"> 
+        <option *ngFor="let qual of qualification" [value]="qual">{{ qual }}</option>
+      
+      </select>
+      <span 
+            *ngIf="!signupForm.get('qualification').valid && signupForm.get('qualification').touched"
+            class="help-block">Please select the course!</span>
+</div>
+</div>
+<div class="row mb-3">
+    <label for="inputEmail" class="col-sm-2 col-form-label">Profession</label>
+<div class="col-sm-6">
+  <select 
+  class="form-select"
+   aria-label="Default select example" 
+  required
+  formControlName="profession">
+    <option *ngFor="let pro of profession" [value]="pro">I am a {{pro}}.</option>
+  </select>
+  <span 
+  *ngIf="!signupForm.get('profession').valid && signupForm.get('profession').touched"
+  class="help-block">Please select the profession!</span>
+ </div>
+</div>
+<div class="row mb-3">
+    <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Short Description</label>
+    <div class="col-sm-6">
+        <textarea 
+        class="form-control textarea"
+         id="description" 
+         rows="3" 
+        required
+        formControlName="description"></textarea>
+        <span 
+        *ngIf="!signupForm.get('description').valid && signupForm.get('description').touched"
+        class="help-block">Please enter the description!</span>
+    </div>  
+  </div>
+  <form #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
+   
+    <div class="col-sm-6">
+      <h3>It is Optional</h3>
+      <section class="border mb-4 p-3" *ngFor="let person of person2; let i = index;">
+        <div class="row">
+          <div class="col-sm-6">
+
+              <h4>Person {{i + 1}}</h4>
+          </div>
+          <div class="col-6 text-right">
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">Remove</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+
+              <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control" [(ngModel)]="person.name" name="address_{{person.id}}" placeholder="Enter your name"/>
+                </div>
+          </div>
+          <div class="col-sm-6">
+
+              <div class="form-group">
+                  <label>Phone</label>
+                  <input type="text" class="form-control" [(ngModel)]="person.phone" name="street_{{person.id}}" placeholder="Enter your phone number"/>
+                </div>
+          </div>
+        </div>
+      </section>   
+      <button type="button" class="btn btn-primary mb-2" (click)="addAddress()">Add More</button>   
+    </div>
+</form>
+      
+<div class="row">
+      <div class="col-sm-6 offset-sm-2">
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+  </div>
+  </form>
+  </mat-step>
+  </form>
+
+  <mat-step label="Step 4">
+<button class="btn btn-primary" type="button" (click)="showData()">Show</button>
+<div class="col-xs-12" *ngIf="visible">
+  
+  <h3><b>Your Data</b> </h3>
+  <p>Email: {{ signupForm.value.email }}</p>
+  <p>Birthday: {{  signupForm.value.birthday }}</p>
+  <p>Gender: {{  signupForm.value.gender}}</p>
+  <p>Phone: {{  signupForm.value.phone }}</p>
+  <p>Hobby: {{  signupForm.value.hobbies }}</p>
+</div>
+<hr>
+<button class="btn btn-primary" type="button" (click)="editData()">Data</button>
+<div class="col-xs-12" *ngIf="visible2">
+  <div *ngFor="let data of fetchData">
+    <p>{{ data.id}}</p>
+    <p>{{ data.name}}</p>
+    <p>{{ data.Email}}</p>
+    <p>{{ data.PhoneNumber}}</p>
+    <p>{{ data.Gender }}</p>
+    <button class="btn btn-primary" type="button" (click)="onupdate(data)">Edit</button>
+    <button class="btn btn-danger" type="button" (click)="onDelete(data)">Delete</button>
+  </div>
+</div>
+<div *ngIf="editdata">
+  <form [formGroup]="UpdateForm" #updatevalue (ngSubmit)="onUpdate(valueId)">
+    <h1>{{ dataId }}</h1>
+  <div class="row mb-3">
+    <label for="inputEmail" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-6">
+        <input type="name" 
+        class="form-control email"
+        (input)="getName($event)" 
+        [value]="editName"
+       required>
+       
+    </div>
+</div>
+<div class="row mb-3">
+  <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+  <div class="col-sm-6">
+      <input type="email" 
+      class="form-control email" 
+      [value]="editEmail"
+      (input)="getEmail($event)" 
+     required>
+  </div>
+
+</div>
+<div class="row mb-3">
+  <label for="inputPassword" class="col-sm-2 col-form-label">Gender</label>
+  <div class="col-sm-6">
+      <div class="radio" *ngFor="let gender of genders">
+        <!-- <div *ngIf="gender === editGender"> -->
+          <label for="radio">
+            <input 
+            type="radio"
+            [value]="editGender"            
+            *ngIf="gender === editGender"
+            checked
+            (input)="getGender($event)" 
+            required>
+            {{ gender }}
+          </label>
+        <!-- </div> -->
+        </div>
+  </div>
+</div>
+<div class="row mb-3">
+  <label for="inputEmail" class="col-sm-2 col-form-label">Phone</label>
+  <div class="col-sm-6">
+      <input type="tel" 
+      class="form-control email" 
+      [value]="editPhone"
+      (input)="getPhone($event)" 
+      placeholder="Enter your mobile number"
+     required>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6 offset-sm-2">
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+</form>
+</div>
+</mat-step> 
+</mat-horizontal-stepper> 
+

@@ -1,0 +1,80 @@
+
+<div class="container">
+    <h2>Step - 1</h2>
+    <div class="row">
+        <form (ngSubmit)="onSubmit()" #f = "ngForm">
+            <div class="row mb-3">
+                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-6">
+                    <input type="email" 
+                    class="form-control email" 
+                    id="email" 
+                    placeholder="Email"
+                    ngModel
+                    name="email"
+                    required
+                    email
+                    #email="ngModel">
+                    <span class="help-block" *ngIf="!email.valid && email.touched">Please Enter the valid Email!</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-6">
+                    <input type="password"
+                     class="form-control password" 
+                     id="Password" 
+                     placeholder="Password"
+                     ngModel
+                     password
+                     name="password"
+                     #password="ngModel">
+                     <span class="help-block" *ngIf="!password.valid && password.touched">Please Enter the valid Password!</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Gender</label>
+                <div class="col-sm-6">
+                    <div class="radio" *ngFor="let gender of genders">
+                        <label for="radio">
+                          <input 
+                          type="radio"
+                          name="gender"
+                          ngModel
+                          [value]="gender"
+                          required>
+                          {{ gender }}
+                        </label>
+                      </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="birthday" class="col-sm-2 col-form-label">Birthday:</label>
+                <div class="col-sm-6">
+                <input type="date" 
+                id="birthday" 
+                ngModel
+                name="birthday"
+                required
+               >
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 offset-sm-2">
+                    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <a routerLink="/step2"><button type="button" class="btn btn-primary next">Next</button></a>
+    
+</div>
+<div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>Email: {{ user.email }}</p>
+      <p>Secret Question:{{ user.password }}</p>
+      <p>Answer: {{ user.birthday }}</p>
+      <p>Gender: {{ user.gender }} </p>
+    </div>
+  </div>

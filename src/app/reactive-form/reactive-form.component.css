@@ -1,0 +1,25 @@
+.help-block{
+   color: red;
+}
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+
+}
+.help-block{
+    color: red;
+    font-size: small;
+}
+
+
+.login-container {
+    font-family: "Source Sans Pro";
+
+}
+.form-select.ng-invalid.ng-touched {
+    border: 1px solid red;
+
+}
+.textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+
+}
